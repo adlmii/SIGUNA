@@ -51,15 +51,16 @@ public class AddStaff extends java.awt.Frame {
         lbl_nama = new javax.swing.JLabel();
         t_nama = new javax.swing.JTextField();
         lbl_jabatan = new javax.swing.JLabel();
-        t_jabatan = new javax.swing.JTextField();
         lbl_status = new javax.swing.JLabel();
-        t_status = new javax.swing.JTextField();
         lbl_JenisKelamin = new javax.swing.JLabel();
         rb_lakiLaki = new javax.swing.JRadioButton();
         rb_perempuan = new javax.swing.JRadioButton();
         btn_tambah = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        t_status = new javax.swing.JComboBox<>();
+        t_jabatan = new javax.swing.JComboBox<>();
 
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png")).getImage());
         setLocationRelativeTo(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -104,14 +105,8 @@ public class AddStaff extends java.awt.Frame {
         lbl_jabatan.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_jabatan.setText("Jabatan");
 
-        t_jabatan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        t_jabatan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-
         lbl_status.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_status.setText("Status");
-
-        t_status.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        t_status.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         lbl_JenisKelamin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_JenisKelamin.setText("Jenis Kelamin");
@@ -135,63 +130,75 @@ public class AddStaff extends java.awt.Frame {
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel1.setText("TAMBAH STAFF");
 
+        t_status.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        t_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "On", "Off" }));
+
+        t_jabatan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        t_jabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "Kepala Cabang" }));
+        t_jabatan.setToolTipText("Pilihan Jabatan");
+        t_jabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_jabatanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_tambah))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbl_status)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbl_jabatan)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbl_nama)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbl_id)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbl_password)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbl_username)
-                                .addComponent(lbl_JenisKelamin))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(t_username, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(32, 32, 32)
-                                    .addComponent(rb_lakiLaki)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(rb_perempuan)
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
-                .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(206, 206, 206))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(206, 206, 206))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btn_tambah))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_id)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_nama)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(t_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbl_JenisKelamin)
+                                            .addComponent(lbl_username))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(t_username, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(rb_lakiLaki)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(rb_perempuan))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbl_status)
+                                            .addComponent(lbl_jabatan)
+                                            .addComponent(lbl_password))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(t_jabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(21, 21, 21))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_id))
@@ -209,20 +216,22 @@ public class AddStaff extends java.awt.Frame {
                     .addComponent(t_username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_username))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_password))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_jabatan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_status))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lbl_jabatan)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_status)))
+                    .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btn_tambah)
-                .addGap(23, 23, 23))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -236,7 +245,7 @@ public class AddStaff extends java.awt.Frame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(568, 477));
+        setSize(new java.awt.Dimension(568, 511));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,25 +273,29 @@ public class AddStaff extends java.awt.Frame {
     }//GEN-LAST:event_t_passwordActionPerformed
 
     private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
-    String id = t_id.getText();
-    String nama = t_nama.getText();
-    String jenisKelamin = rb_lakiLaki.isSelected() ? "Laki-laki" : "Perempuan";
-    String username = t_username.getText();
-    String password = t_password.getText();
-    String jabatan = t_jabatan.getText();
-    String status = t_status.getText();
+        String id = t_id.getText();
+        String nama = t_nama.getText();
+        String jenisKelamin = rb_lakiLaki.isSelected() ? "Laki-laki" : "Perempuan";
+        String username = t_username.getText();
+        String password = t_password.getText();
+        String jabatan = t_jabatan.getSelectedItem().toString();
+        String status = t_status.getSelectedItem().toString();
 
-    // Panggil controller untuk menambahkan data
-    kelolaStaffController controller = new kelolaStaffController(conn);
-    boolean isAdded = controller.addStaff(id, nama, jenisKelamin, username, password, jabatan, status);
+        // Panggil controller untuk menambahkan data
+        kelolaStaffController controller = new kelolaStaffController(conn);
+        boolean isAdded = controller.addStaff(id, nama, jenisKelamin, username, password, jabatan, status);
 
-    if (isAdded) {
-        // Jika sukses, kembali ke menu utama
-        menuKP menu = new menuKP();
-        menu.setVisible(true);
-        this.dispose();
-    }
+        if (isAdded) {
+            // Jika sukses, kembali ke menu utama
+            menuKP menu = new menuKP();
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_tambahActionPerformed
+
+    private void t_jabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_jabatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_jabatanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,10 +324,10 @@ public class AddStaff extends java.awt.Frame {
     private javax.swing.JRadioButton rb_lakiLaki;
     private javax.swing.JRadioButton rb_perempuan;
     private javax.swing.JTextField t_id;
-    private javax.swing.JTextField t_jabatan;
+    private javax.swing.JComboBox<String> t_jabatan;
     private javax.swing.JTextField t_nama;
     private javax.swing.JTextField t_password;
-    private javax.swing.JTextField t_status;
+    private javax.swing.JComboBox<String> t_status;
     private javax.swing.JTextField t_username;
     // End of variables declaration//GEN-END:variables
 }

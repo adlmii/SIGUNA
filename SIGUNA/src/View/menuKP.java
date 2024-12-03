@@ -98,7 +98,6 @@ public class menuKP extends java.awt.Frame {
         KelolaStaff = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_dataStaff = new javax.swing.JTable();
-        btn_hapusStaff = new javax.swing.JToggleButton();
         btn_tambahStaff = new javax.swing.JToggleButton();
 
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png")).getImage());
@@ -180,7 +179,7 @@ public class menuKP extends java.awt.Frame {
         );
         konfigurasiAwalPanelLayout.setVerticalGroup(
             konfigurasiAwalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Konfigurasi Awal", konfigurasiAwalPanel);
@@ -206,7 +205,7 @@ public class menuKP extends java.awt.Frame {
         );
         LaporanPenjualanPanelLayout.setVerticalGroup(
             LaporanPenjualanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Laporan Penjualan", LaporanPenjualanPanel);
@@ -232,14 +231,6 @@ public class menuKP extends java.awt.Frame {
         });
         jScrollPane3.setViewportView(tbl_dataStaff);
 
-        btn_hapusStaff.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btn_hapusStaff.setText("Hapus Staff");
-        btn_hapusStaff.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_hapusStaffMouseClicked(evt);
-            }
-        });
-
         btn_tambahStaff.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         btn_tambahStaff.setText("Tambah Staff");
         btn_tambahStaff.addActionListener(new java.awt.event.ActionListener() {
@@ -253,22 +244,17 @@ public class menuKP extends java.awt.Frame {
         KelolaStaffLayout.setHorizontalGroup(
             KelolaStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaStaffLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_tambahStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_hapusStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(KelolaStaffLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_tambahStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         KelolaStaffLayout.setVerticalGroup(
             KelolaStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(KelolaStaffLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(KelolaStaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_tambahStaff)
-                    .addComponent(btn_hapusStaff))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btn_tambahStaff)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Kelola Staff", KelolaStaff);
@@ -380,7 +366,7 @@ public class menuKP extends java.awt.Frame {
             String nama = tbl_dataStaff.getValueAt(selectedRow, 1).toString();
             String jenis_kelamin = tbl_dataStaff.getValueAt(selectedRow, 2).toString();
             String jabatan = tbl_dataStaff.getValueAt(selectedRow, 3).toString();
-            String status = tbl_dataStaff.getValueAt(selectedRow, 3).toString();
+            String status = tbl_dataStaff.getValueAt(selectedRow, 4).toString();
         
             
             Staff.userId = id;
@@ -394,28 +380,6 @@ public class menuKP extends java.awt.Frame {
         editStaff.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tbl_dataStaffMouseClicked
-
-    private void btn_hapusStaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusStaffMouseClicked
-        int selectedRow = tbl_dataStaff.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih baris yang ingin dihapus", "Validasi", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(this, "Hapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-        String username = tbl_dataStaff.getValueAt(selectedRow, 1).toString(); // Asumsi kolom 1 berisi username
-
-            // Panggil controller untuk menghapus data
-            kelolaStaffController controller = new kelolaStaffController(conn);
-            boolean isDeleted = controller.deleteStaff(username);
-
-            if (isDeleted) {
-            // Refresh data di tabel
-            getData();
-            }
-        }
-    }//GEN-LAST:event_btn_hapusStaffMouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,7 +396,6 @@ public class menuKP extends java.awt.Frame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel KelolaStaff;
     private javax.swing.JPanel LaporanPenjualanPanel;
-    private javax.swing.JToggleButton btn_hapusStaff;
     private javax.swing.JToggleButton btn_tambahStaff;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -33,8 +33,8 @@ public class EditStaff extends java.awt.Frame {
         
         t_id.setText(Staff.userId);
         t_nama.setText(Staff.nama);
-        t_jabatan.setText(Staff.jabatan);
-        t_status.setText(Staff.status);
+        t_jabatan.setSelectedItem(Staff.jabatan);
+        t_status.setSelectedItem(Staff.status);
         
         if ("Laki-laki".equals(Staff.jenis_kelamin)) {
             rb_lakiLaki.setSelected(true);
@@ -58,15 +58,17 @@ public class EditStaff extends java.awt.Frame {
         lbl_nama = new javax.swing.JLabel();
         t_nama = new javax.swing.JTextField();
         lbl_jabatan = new javax.swing.JLabel();
-        t_jabatan = new javax.swing.JTextField();
         lbl_status = new javax.swing.JLabel();
-        t_status = new javax.swing.JTextField();
         lbl_JenisKelamin = new javax.swing.JLabel();
         rb_lakiLaki = new javax.swing.JRadioButton();
         rb_perempuan = new javax.swing.JRadioButton();
-        btn_edit = new javax.swing.JButton();
+        btn_hapus = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btn_edit = new javax.swing.JButton();
+        t_jabatan = new javax.swing.JComboBox<>();
+        t_status = new javax.swing.JComboBox<>();
 
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png")).getImage());
         setLocationRelativeTo(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -77,6 +79,7 @@ public class EditStaff extends java.awt.Frame {
         lbl_id.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_id.setText("Id");
 
+        t_id.setEditable(false);
         t_id.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         t_id.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -94,19 +97,8 @@ public class EditStaff extends java.awt.Frame {
         lbl_jabatan.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_jabatan.setText("Jabatan");
 
-        t_jabatan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        t_jabatan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        t_jabatan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_jabatanActionPerformed(evt);
-            }
-        });
-
         lbl_status.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_status.setText("Status");
-
-        t_status.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        t_status.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         lbl_JenisKelamin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         lbl_JenisKelamin.setText("Jenis Kelamin");
@@ -119,6 +111,17 @@ public class EditStaff extends java.awt.Frame {
         rb_perempuan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         rb_perempuan.setText("Perempuan");
 
+        btn_hapus.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btn_hapus.setText("Hapus");
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jLabel1.setText("EDIT STAFF");
+
         btn_edit.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btn_edit.setText("Edit");
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -127,56 +130,69 @@ public class EditStaff extends java.awt.Frame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLabel1.setText("EDIT STAFF");
+        t_jabatan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        t_jabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "Kepala Cabang" }));
+        t_jabatan.setToolTipText("Pilihan Jabatan");
+        t_jabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_jabatanActionPerformed(evt);
+            }
+        });
+
+        t_status.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        t_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "On", "Off" }));
+        t_status.setSelectedItem(Staff.status);
+        t_status.setToolTipText("Status");
+        t_status.setSelectedItem(Staff.status);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(445, 445, 445)
-                        .addComponent(btn_edit))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(206, 206, 206))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_edit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_status)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_jabatan)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_nama)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                                 .addComponent(t_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_id)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_JenisKelamin)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_JenisKelamin)
+                                    .addComponent(lbl_jabatan)
+                                    .addComponent(lbl_status))
                                 .addGap(32, 32, 32)
-                                .addComponent(rb_lakiLaki)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rb_perempuan)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t_jabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rb_lakiLaki)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rb_perempuan)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(t_status, 0, 371, Short.MAX_VALUE))))))
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(206, 206, 206))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_id))
@@ -190,16 +206,20 @@ public class EditStaff extends java.awt.Frame {
                     .addComponent(rb_perempuan)
                     .addComponent(rb_lakiLaki))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_jabatan))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_jabatan)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(t_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_status))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_status)
+                    .addComponent(t_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94)
-                .addComponent(btn_edit)
-                .addGap(23, 23, 23))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_hapus)
+                    .addComponent(btn_edit))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -233,15 +253,39 @@ public class EditStaff extends java.awt.Frame {
     }//GEN-LAST:event_exitForm
 
     private void t_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_namaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_t_namaActionPerformed
+
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
+        String id = t_id.getText(); // Ambil username dari input field
+
+        int confirm = JOptionPane.showConfirmDialog(this, 
+        "Apakah Anda yakin ingin menghapus staff dengan username: " + id + "?", 
+        "Konfirmasi Hapus", 
+        JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            kelolaStaffController controller = new kelolaStaffController(conn);
+            boolean success = controller.deleteStaff(id);
+
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Staff berhasil dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                // Tutup form HapusStaff atau lakukan refresh pada tabel data staff
+                this.dispose();
+                new menuKP().setVisible(true); // Sesuaikan dengan form utama Anda
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal menghapus staff. Username mungkin tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         String userId = Staff.userId; // ID staff yang sedang diedit
         String nama = t_nama.getText();
         String jenis_kelamin = rb_lakiLaki.isSelected() ? "Laki-laki" : "Perempuan";
-        String jabatan = t_jabatan.getText();
-        String status = t_status.getText();
+        String jabatan = t_jabatan.getSelectedItem().toString();
+        String status = t_status.getSelectedItem().toString();
 
         kelolaStaffController controller = new kelolaStaffController(conn);
         boolean success = controller.editStaff(userId, nama, jenis_kelamin, jabatan, status);
@@ -271,6 +315,7 @@ public class EditStaff extends java.awt.Frame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_edit;
+    private javax.swing.JButton btn_hapus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.ButtonGroup jenisKelamin;
@@ -282,8 +327,8 @@ public class EditStaff extends java.awt.Frame {
     private javax.swing.JRadioButton rb_lakiLaki;
     private javax.swing.JRadioButton rb_perempuan;
     private javax.swing.JTextField t_id;
-    private javax.swing.JTextField t_jabatan;
+    private javax.swing.JComboBox<String> t_jabatan;
     private javax.swing.JTextField t_nama;
-    private javax.swing.JTextField t_status;
+    private javax.swing.JComboBox<String> t_status;
     // End of variables declaration//GEN-END:variables
 }
