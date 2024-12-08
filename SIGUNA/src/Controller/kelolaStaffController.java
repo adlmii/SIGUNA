@@ -70,8 +70,6 @@ public class kelolaStaffController {
             if (rowDeleted > 0) {
                 JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
                 return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau sudah dihapus");
             }
         } catch (Exception e) {
             Logger.getLogger(kelolaStaffController.class.getName()).log(Level.SEVERE, null, e);
@@ -95,9 +93,7 @@ public class kelolaStaffController {
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Data staff berhasil diperbarui.");
                 return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Data staff tidak ditemukan.");
-            }
+            } 
         } catch (Exception e) {
             Logger.getLogger(kelolaStaffController.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memperbarui data.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -157,8 +153,6 @@ public class kelolaStaffController {
             if (rowDeleted > 0) {
                 JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
                 return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau sudah dihapus");
             }
         } catch (Exception e) {
             Logger.getLogger(kelolaStaffController.class.getName()).log(Level.SEVERE, null, e);
@@ -182,9 +176,7 @@ public class kelolaStaffController {
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Data staff berhasil diperbarui.");
                 return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Data staff tidak ditemukan.");
-            }
+            } 
         } catch (Exception e) {
             Logger.getLogger(kelolaStaffController.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memperbarui data.", "Error", JOptionPane.ERROR_MESSAGE);

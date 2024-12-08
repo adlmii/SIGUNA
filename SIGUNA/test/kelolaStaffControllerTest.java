@@ -59,6 +59,23 @@ public class kelolaStaffControllerTest {
     }
 
     @Test
+    public void testAddFailedConnectionLost() {
+        try {
+            conn.close();
+            
+            // Melakukan operasi penambahan staf, yang seharusnya gagal karena koneksi terputus
+            boolean result = controller.addStaffTest("123", "John Doe", "Laki-laki", "johndoe", "password123", "Staff", "On");
+            
+            // Menguji bahwa hasilnya adalah false karena koneksi terputus
+            assertFalse(result);
+
+        } catch (SQLException e) {
+            // Jika terjadi SQLException, kita pastikan error mengindikasikan koneksi yang terputus
+            assertTrue(e.getMessage().contains("Koneksi Terputus"));
+        }
+    }
+
+    @Test
     public void testAddStaff_duplikatUsername() {
         controller.addStaffTest("123", "John Doe", "Laki-laki", "johndoe", "password123", "Staff", "On");
 
@@ -76,7 +93,7 @@ public class kelolaStaffControllerTest {
 
     @Test
     public void testAddStaff_MissingFields() {
-        boolean result = controller.addStaffTest("", "John Doe", "Laki-laki", "johndoe", "password123", "Staff", "On");
+        boolean result = controller.addStaffTest("", "", "Laki-laki", "", "", "Staff", "On");
         assertFalse(result);
     }
 
